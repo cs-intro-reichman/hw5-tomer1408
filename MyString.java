@@ -8,6 +8,8 @@ public class MyString {
         System.out.println(countChar(hello, 'l'));
         System.out.println(countChar(hello, 'z'));
         System.out.println(spacedString(hello));
+        System.out.println(spacedString(""));
+    
         //// Put your other tests here.
     }
 
@@ -87,6 +89,9 @@ public class MyString {
         if (str == null) {
             return " ";
         }
+        if (str == "") {
+            return " ";
+        }
     
         char[] strArray = new char[str.length() * 2 - 1];
         
@@ -111,12 +116,14 @@ public class MyString {
      * @return a randomly generated string, consisting of 'n' lowercase letters
      */
     public static String randomStringOfLetters(int n) {
-    //     char[] letter = new char[n];
-    //   for (int index = 0; index < n; index++) {
-        
-    //   }
-        return null;
+        char[] letter = new char[n]; 
+        for (int i = 0; i < n; i++) {
+            int randomValue = (int)(Math.random() * (122 - 97 + 1)) + 97;
+            letter[i] = (char) randomValue; 
+        }
+        return String.valueOf(letter); 
     }
+    
 
     /**
      * Returns a string consisting of the string str1, minus all the characters in the

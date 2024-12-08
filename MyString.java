@@ -85,7 +85,7 @@ public class MyString {
      */
     public static String spacedString(String str) {
         if (str == null) {
-            return "";
+            return " ";
         }
     
         char[] strArray = new char[str.length() * 2 - 1];
@@ -111,7 +111,10 @@ public class MyString {
      * @return a randomly generated string, consisting of 'n' lowercase letters
      */
     public static String randomStringOfLetters(int n) {
-        //// Replace the following statement with your code
+    //     char[] letter = new char[n];
+    //   for (int index = 0; index < n; index++) {
+        
+    //   }
         return null;
     }
 

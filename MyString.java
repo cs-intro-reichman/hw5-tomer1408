@@ -121,14 +121,15 @@ public class MyString {
      */
     public static String randomStringOfLetters(int n) {
         if (n == 0) {
-            return " ";
+            return ""; 
         }
-        char[] letter = new char[n]; 
+    
+        char[] letters = new char[n]; 
         for (int i = 0; i < n; i++) {
-            int randomValue = (int)(Math.random() * (122 - 97 + 1)) + 97;
-            letter[i] = (char) randomValue; 
+            int randomValue = (int)(Math.random() * (122 - 97 + 1)) + 97; 
+            letters[i] = (char) randomValue; 
         }
-        return String.valueOf(letter); 
+        return String.valueOf(letters);
     }
     
 
@@ -147,7 +148,7 @@ public class MyString {
             str2Array[i] = str2.charAt(i);
         }
     
-        char[] newString = new char[str1.length()];
+        char[] newString = new char[str1.length()-str2.length()];
         int index = 0; 
 
         for (int i = 0; i < str1.length(); i++) {

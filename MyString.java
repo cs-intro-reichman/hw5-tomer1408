@@ -4,6 +4,7 @@
 public class MyString {
     public static void main(String args[]) {
         String hello = "hello";
+        String heo = "heo";
         System.out.println(countChar(hello, 'h'));
         System.out.println(countChar(hello, 'l'));
         System.out.println(countChar(hello, 'z'));
@@ -11,6 +12,8 @@ public class MyString {
         System.out.println(spacedString(""));
         System.out.println( randomStringOfLetters(3));
         System.out.println( randomStringOfLetters(0));
+        System.out.println( remove(hello, heo));
+        
         //// Put your other tests here.
     }
 
@@ -139,9 +142,33 @@ public class MyString {
      * @return a string consisting of str1 minus all the characters of str2
      */
     public static String remove(String str1, String str2) {
-       //// Replace the following statement with your code
-        return null;
+        char[] str2Array = new char[str2.length()];
+        for (int i = 0; i < str2.length(); i++) {
+            str2Array[i] = str2.charAt(i);
+        }
+    
+        char[] newString = new char[str1.length()];
+        int index = 0; 
+
+        for (int i = 0; i < str1.length(); i++) {
+            char ch = str1.charAt(i);
+            boolean toRemove = false;
+    
+            for (int j = 0; j < str2Array.length; j++) {
+                if (ch == str2Array[j]) {
+                    toRemove = true; 
+                    str2Array[j] = '0'; 
+                    break;
+                }
+            }
+            if (!toRemove) {
+                newString[index] = ch;
+                index++;
+            }
+        }
+        return String.valueOf(newString, 0, index);
     }
+    
 
     /**
      * Returns a string consisting of the given string, with the given 

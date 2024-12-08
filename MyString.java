@@ -84,10 +84,18 @@ public class MyString {
      * @return a string consisting of the characters of str, separated by spaces.
      */
     public static String spacedString(String str) {
-        //// Replace the following statement with your code
-        return null;
+        char[] strArray = new char[str.length() * 2 - 1];
+        
+        for (int i = 0, j = 0; i < str.length(); i++, j += 2) {
+            strArray[j] = str.charAt(i); 
+            if (j + 1 < strArray.length) {
+                strArray[j + 1] = ' '; 
+            }
+        }
+        
+        return String.valueOf(strArray); 
     }
-  
+    
     /**
      * Returns a string of n lowercase letters, selected randomly from 
      * the English alphabet 'a', 'b', 'c', ..., 'z'. Note that the same

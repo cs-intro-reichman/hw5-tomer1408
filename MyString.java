@@ -9,7 +9,8 @@ public class MyString {
         System.out.println(countChar(hello, 'z'));
         System.out.println(spacedString(hello));
         System.out.println(spacedString(""));
-    
+        System.out.println( randomStringOfLetters(3));
+        System.out.println( randomStringOfLetters(0));
         //// Put your other tests here.
     }
 
@@ -116,6 +117,9 @@ public class MyString {
      * @return a randomly generated string, consisting of 'n' lowercase letters
      */
     public static String randomStringOfLetters(int n) {
+        if (n == 0) {
+            return " ";
+        }
         char[] letter = new char[n]; 
         for (int i = 0; i < n; i++) {
             int randomValue = (int)(Math.random() * (122 - 97 + 1)) + 97;

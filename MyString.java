@@ -20,8 +20,13 @@ public class MyString {
      * @return the number of times c appears in str
      */
     public static int countChar(String str, char ch) {
-        //// Replace the following statement with your code
-        return 0;
+        int appears = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if(str.charAt(i)== ch){
+        appears = appears + 1;
+                }
+}
+        return appears;
     }
 
     /** Returns true if str1 is a subset string str2, false otherwise
@@ -36,9 +41,39 @@ public class MyString {
      * @return true is str1 is a subset of str2, false otherwise
      */
     public static boolean subsetOf(String str1, String str2) {
-         //// Replace the following statement with your code
-        return false;
+        if (str1 == null || str2 == null) {
+            return true;
+        }
+
+        if (str1.length()==0) {
+            return true; 
+        }
+        
+        char[] str2Array = new char[str2.length()];
+    for (int i = 0; i < str2.length(); i++) {
+        str2Array[i] = str2.charAt(i);
     }
+        for (int i = 0; i < str1.length(); i++) {
+            boolean match = false;
+            char ch = str1.charAt(i);
+            for (int j = 0; j < str2.length(); j++) {
+                if(ch==str2Array[j]){
+                    str2Array[j]= '0';
+                    match = true;
+                    break;
+        
+                }
+        }
+        if (!match) {
+            return false;
+        }
+      
+    }
+    return true;
+}
+
+
+
 
     /** Returns a string which is the same as the given string, with a space
      * character inserted after each character in the given string, except

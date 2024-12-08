@@ -84,6 +84,10 @@ public class MyString {
      * @return a string consisting of the characters of str, separated by spaces.
      */
     public static String spacedString(String str) {
+        if (str == null || str.isEmpty()) {
+            return "";
+        }
+    
         char[] strArray = new char[str.length() * 2 - 1];
         
         for (int i = 0, j = 0; i < str.length(); i++, j += 2) {

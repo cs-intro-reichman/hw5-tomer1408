@@ -84,7 +84,7 @@ public class MyString {
      * @return a string consisting of the characters of str, separated by spaces.
      */
     public static String spacedString(String str) {
-        if (str == null || str.isEmpty()) {
+        if (str == null) {
             return "";
         }
     

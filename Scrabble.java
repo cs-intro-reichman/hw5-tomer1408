@@ -148,7 +148,7 @@ public static int wordScore(String word) {
 				System.out.println("Enter a word, or '.' to finish playing this hand:");
 				input = in.readString(); 
 				if (input.equals(".")) {
-					return; 
+					break; 
 				}
 			}
 			if (isWordInDictionary(input)&&MyString.subsetOf(input, hand)) {

@@ -59,22 +59,64 @@ public class Scrabble {
 		return false; 
 	}
 	
-	
+	// Checks if the given word is in the dictionary.
 	// Returns the Scrabble score of the given word.
-	// If the length of the word equals the length of the hand, adds 50 points to the score.
-	// If the word includes the sequence "runi", adds 1000 points to the game.
-	public static int wordScore(String word) {
-		//// Replace the following statement with your code
-		return 0;
+// If the length of the word equals the length of the hand, adds 50 points to the score.
+// If the word includes all the letters 'r', 'u', 'n', and 'i', adds 1000 points to the score.
+public static int wordScore(String word) {
+    int myScore = 0;
+
+    for (int i = 0; i < word.length(); i++) {
+        myScore += SCRABBLE_LETTER_VALUES[word.charAt(i) - 97];
+    }
+
+    myScore = myScore * word.length();
+
+    if (word.length() == HAND_SIZE) {
+        myScore += 50;
+    }
+
+	String schoolName = "runi";
+	int count =0;
+
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < word.length(); j++) {
+			if (word.charAt(j) == schoolName.charAt(i)){
+				count ++;
+				break;
+			}
+		}
+    } 
+
+	if (count > 3) {
+		return myScore + 1000;
 	}
+
+    return myScore;
+}
+
+	
+	
+	
 
 	// Creates a random hand of length (HAND_SIZE - 2) and then inserts
 	// into it, at random indexes, the letters 'a' and 'e'
 	// (these two vowels make it easier for the user to construct words)
 	public static String createHand() {
-		//// Replace the following statement with your code
-		return null;
+		String randomHand = "";
+
+		for (int i = 0; i < (HAND_SIZE - 2); i++) {
+			int randomValue = (int) (Math.random() * (122 - 97 + 1)) + 97; 
+			char ch = (char) randomValue;
+			randomHand += ch; 
+		}
+	
+		randomHand = MyString.insertRandomly('a', randomHand);
+		randomHand = MyString.insertRandomly('e', randomHand);
+	
+		return randomHand;
 	}
+	
 	
     // Runs a single hand in a Scrabble game. Each time the user enters a valid word:
     // 1. The letters in the word are removed from the hand, which becomes smaller.
@@ -161,3 +203,5 @@ public class Scrabble {
 		//playHand("aretiin");
 	}
 }
+
+

@@ -151,7 +151,7 @@ public static int wordScore(String word) {
 					return; 
 				}
 			}
-			if (isWordInDictionary(input)) {
+			if (isWordInDictionary(input)&&MyString.subsetOf(input, hand)) {
 				score += wordScore(input); 
 				hand = MyString.remove(hand, input); 
 			}

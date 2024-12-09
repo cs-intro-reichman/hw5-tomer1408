@@ -175,18 +175,16 @@ public static int wordScore(String word) {
 			String input = in.readString();
 	
 			if (input.equals("n")) {
-			
-				String hand = createHand(); 
-				playHand(hand); 
+				String hand = createHand();
+				playHand(hand);
 			} else if (input.equals("e")) {
-		
-				System.out.println("Thanks for playing!");
-				break; 
+				break;
 			} else {
 				System.out.println("Invalid input. Please enter 'n' or 'e'.");
 			}
 		}
 	}
+	
 	
 
 	public static void main(String[] args) {

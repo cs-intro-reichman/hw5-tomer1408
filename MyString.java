@@ -59,6 +59,7 @@ public class MyString {
     for (int i = 0; i < str2.length(); i++) {
         str2Array[i] = str2.charAt(i);
     }
+
         for (int i = 0; i < str1.length(); i++) {
             boolean match = false;
             char ch = str1.charAt(i);
@@ -93,7 +94,7 @@ public class MyString {
         if (str == null) {
             return " ";
         }
-        if (str == "") {
+        if (str == " ") {
             return " ";
         }
     
@@ -148,7 +149,7 @@ public class MyString {
             str2Array[i] = str2.charAt(i);
         }
     
-        char[] newString = new char[str1.length()-str2.length()];
+        char[] newString = new char[str1.length()];
         int index = 0; 
 
         for (int i = 0; i < str1.length(); i++) {

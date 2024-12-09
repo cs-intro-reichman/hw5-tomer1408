@@ -48,9 +48,17 @@ public class Scrabble {
 
 	// Checks if the given word is in the dictionary.
 	public static boolean isWordInDictionary(String word) {
-		//// Replace the following statement with your code
-		return false;
+		for (int i = 0; i < NUM_OF_WORDS; i++) {
+			if(DICTIONARY[i] == null){
+				return false; 
+			}
+			if (DICTIONARY[i].equals(word)) { 
+				return true;
+			}
+		}
+		return false; 
 	}
+	
 	
 	// Returns the Scrabble score of the given word.
 	// If the length of the word equals the length of the hand, adds 50 points to the score.

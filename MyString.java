@@ -4,10 +4,16 @@
 public class MyString {
     public static void main(String args[]) {
         String hello = "hello";
+        String heo = "heo";
         System.out.println(countChar(hello, 'h'));
         System.out.println(countChar(hello, 'l'));
         System.out.println(countChar(hello, 'z'));
         System.out.println(spacedString(hello));
+        System.out.println(spacedString(""));
+        System.out.println( randomStringOfLetters(3));
+        System.out.println( randomStringOfLetters(0));
+        System.out.println( remove(hello, heo));
+        
         //// Put your other tests here.
     }
 
@@ -20,8 +26,13 @@ public class MyString {
      * @return the number of times c appears in str
      */
     public static int countChar(String str, char ch) {
-        //// Replace the following statement with your code
-        return 0;
+        int appears = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if(str.charAt(i)== ch){
+        appears = appears + 1;
+                }
+}
+        return appears;
     }
 
     /** Returns true if str1 is a subset string str2, false otherwise
@@ -36,9 +47,39 @@ public class MyString {
      * @return true is str1 is a subset of str2, false otherwise
      */
     public static boolean subsetOf(String str1, String str2) {
-         //// Replace the following statement with your code
-        return false;
+        if (str1 == null || str2 == null) {
+            return true;
+        }
+        if (str1.length()==0) {
+            return true; 
+        }
+        
+        char[] str2Array = new char[str2.length()];
+    for (int i = 0; i < str2.length(); i++) {
+        str2Array[i] = str2.charAt(i);
     }
+
+        for (int i = 0; i < str1.length(); i++) {
+            boolean match = false;
+            char ch = str1.charAt(i);
+            for (int j = 0; j < str2.length(); j++) {
+                if(ch==str2Array[j]){
+                    str2Array[j]= '0';
+                    match = true;
+                    break;
+        
+                }
+        }
+        if (!match) {
+            return false;
+        }
+      
+    }
+    return true;
+}
+
+
+
 
     /** Returns a string which is the same as the given string, with a space
      * character inserted after each character in the given string, except
@@ -49,10 +90,22 @@ public class MyString {
      * @return a string consisting of the characters of str, separated by spaces.
      */
     public static String spacedString(String str) {
-        //// Replace the following statement with your code
-        return null;
+        if (str == null || str.length() == 0) {
+            return ""; 
+        }
+    
+        char[] strArray = new char[str.length() * 2 - 1];
+    
+        for (int i = 0, j = 0; i < str.length(); i++, j += 2) {
+            strArray[j] = str.charAt(i);
+            if (j + 1 < strArray.length) {
+                strArray[j + 1] = ' ';
+            }
+        }
+    
+        return String.valueOf(strArray);
     }
-  
+    
     /**
      * Returns a string of n lowercase letters, selected randomly from 
      * the English alphabet 'a', 'b', 'c', ..., 'z'. Note that the same
@@ -64,9 +117,31 @@ public class MyString {
      * @return a randomly generated string, consisting of 'n' lowercase letters
      */
     public static String randomStringOfLetters(int n) {
-        //// Replace the following statement with your code
-        return null;
+        if (n == 0) {
+            return ""; 
+        }
+    
+        char[] letters = new char[n]; 
+        for (int i = 0; i < n; i++) {
+            int randomValue = (int)(Math.random() * (122 - 97 + 1)) + 97; // rendom number between 97-122 (lowercase letters)
+            letters[i] = (char) randomValue; // adding the letter to the Array
+        }
+        return String.valueOf(letters);
     }
+    
+
+    // public static String randomStringOfLetters(int n) {
+    //     if (n == 0) {
+    //         return ""; 
+    //     }
+    
+    //     String result = ""; 
+    //     for (int i = 0; i < n; i++) {
+    //         int randomValue = (int)(Math.random() * (122 - 97 + 1)) + 97;
+    //         result += (char) randomValue; 
+    //     return result;
+    // }
+    
 
     /**
      * Returns a string consisting of the string str1, minus all the characters in the
@@ -78,9 +153,33 @@ public class MyString {
      * @return a string consisting of str1 minus all the characters of str2
      */
     public static String remove(String str1, String str2) {
-       //// Replace the following statement with your code
-        return null;
+        char[] str2Array = new char[str2.length()];
+        for (int i = 0; i < str2.length(); i++) {
+            str2Array[i] = str2.charAt(i);
+        }
+    
+        char[] newString = new char[str1.length()];
+        int index = 0; 
+
+        for (int i = 0; i < str1.length(); i++) {
+            char ch = str1.charAt(i);
+            boolean toRemove = false;
+    
+            for (int j = 0; j < str2Array.length; j++) {
+                if (ch == str2Array[j]) {
+                    toRemove = true; 
+                    str2Array[j] = '0'; 
+                    break;
+                }
+            }
+            if (!toRemove) {
+                newString[index] = ch;
+                index++;
+            }
+        }
+        return String.valueOf(newString, 0, index);
     }
+    
 
     /**
      * Returns a string consisting of the given string, with the given 

@@ -50,7 +50,6 @@ public class MyString {
         if (str1 == null || str2 == null) {
             return true;
         }
-
         if (str1.length()==0) {
             return true; 
         }
@@ -91,13 +90,10 @@ public class MyString {
      * @return a string consisting of the characters of str, separated by spaces.
      */
     public static String spacedString(String str) {
-        if (str == null) {
+        if (str == null||str.equals(" ")) {
             return " ";
         }
-        if (str == " ") {
-            return " ";
-        }
-    
+      
         char[] strArray = new char[str.length() * 2 - 1];
         
         for (int i = 0, j = 0; i < str.length(); i++, j += 2) {
@@ -127,11 +123,24 @@ public class MyString {
     
         char[] letters = new char[n]; 
         for (int i = 0; i < n; i++) {
-            int randomValue = (int)(Math.random() * (122 - 97 + 1)) + 97; 
-            letters[i] = (char) randomValue; 
+            int randomValue = (int)(Math.random() * (122 - 97 + 1)) + 97; // rendom number between 97-122 (lowercase letters)
+            letters[i] = (char) randomValue; // adding the letter to the Array
         }
         return String.valueOf(letters);
     }
+    
+
+    // public static String randomStringOfLetters(int n) {
+    //     if (n == 0) {
+    //         return ""; 
+    //     }
+    
+    //     String result = ""; 
+    //     for (int i = 0; i < n; i++) {
+    //         int randomValue = (int)(Math.random() * (122 - 97 + 1)) + 97;
+    //         result += (char) randomValue; 
+    //     return result;
+    // }
     
 
     /**

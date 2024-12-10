@@ -123,17 +123,16 @@ public static int wordScore(String word) {
     // 2. The user gets the Scrabble points of the entered word.
     // 3. The user is prompted to enter another word, or '.' to end the hand. 
 	// Runs a single hand in a Scrabble game. Each time the user enters a valid word:
-// 1. The letters in the word are removed from the hand, which becomes smaller.
-// 2. The user gets the Scrabble points of the entered word.
-// 3. The user is prompted to enter another word, or '.' to end the hand.
+
 public static void playHand(String hand) {
-    int score = 0; // משתנה לניקוד
-    In in = new In(); // אובייקט לקריאת קלט
+    int score = 0; 
+    In in = new In(); 
 
     while (hand.length() > 0) {
         System.out.println("Current Hand: " + MyString.spacedString(hand));
         System.out.println("Enter a word, or '.' to finish playing this hand:");
 
+    
         if (!in.hasNextLine()) {
             System.out.println("No input available. Ending hand.");
             return;
@@ -145,27 +144,25 @@ public static void playHand(String hand) {
             break;
         }
 
-        if (!MyString.subsetOf(input, hand) || input.length() < 2) {
-            System.out.println("Invalid word. Try again.");
-        } else if (isWordInDictionary(input)) {
-            int wordPoints = wordScore(input); 
-            score += wordPoints; 
-            hand = MyString.remove(hand, input); 
-            System.out.println(input + " earned " + wordPoints + " points. Score: " + score + " points");
+        if (MyString.subsetOf(input, hand) && input.length() >= 2) {
+          
+            if (isWordInDictionary(input)) {
+                int wordPoints = wordScore(input); 
+                score += wordPoints; 
+                hand = MyString.remove(hand, input); 
+                System.out.println(input + " earned " + wordPoints + " points. Score: " + score + " points");
+            } else {
+                System.out.println("Invalid word. Try again."); 
+            }
         } else {
-            System.out.println("Invalid word. Try again.");
+            System.out.println("Invalid word. Try again."); 
         }
-
         if (hand.length() <= 2) {
             break;
         }
     }
 
-    if (hand.length() == 0) {
-        System.out.println("Ran out of letters. Total score: " + score + " points");
-    } else {
-        System.out.println("End of hand. Total score: " + score + " points");
-    }
+    System.out.println("End of hand. Total score: " + score + " points");
 }
 
 

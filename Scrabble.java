@@ -159,6 +159,10 @@ public static int wordScore(String word) {
 			} else {
 				System.out.println("Invalid word. Try again.");
 			}
+	
+			if (hand.isEmpty() || !in.hasNextLine()) {
+				break;
+			}
 		}
 	
 		System.out.println("End of hand. Total score: " + score + " points");

@@ -143,22 +143,28 @@ public static int wordScore(String word) {
 				break;
 			}
 	
-			if (MyString.subsetOf(input, hand) && input.length() >= 2 && isWordInDictionary(input)) {
+			if (!MyString.subsetOf(input, hand) || input.length() < 2) {
+				System.out.println("Invalid word. Try again.");
+				continue;
+			}
+	
+			if (isWordInDictionary(input)) {
 				int wordPoints = wordScore(input);
 				score += wordPoints;
 				hand = MyString.remove(hand, input);
 				System.out.println(input + " earned " + wordPoints + " points. Score: " + score + " points");
-	
-				if (hand.length() <= 2) {
-					break;
-				}
 			} else {
 				System.out.println("Invalid word. Try again.");
+			}
+	
+			if (hand.length() <= 2) {
+				break;
 			}
 		}
 	
 		System.out.println("End of hand. Total score: " + score + " points");
 	}
+	
 	
 
 

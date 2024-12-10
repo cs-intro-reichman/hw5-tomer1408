@@ -124,47 +124,42 @@ public static int wordScore(String word) {
     // 3. The user is prompted to enter another word, or '.' to end the hand. 
 	// Runs a single hand in a Scrabble game. Each time the user enters a valid word:
 
-public static void playHand(String hand) {
-    int score = 0; 
-    In in = new In(); 
-
-    while (hand.length() > 0) {
-        System.out.println("Current Hand: " + MyString.spacedString(hand));
-        System.out.println("Enter a word, or '.' to finish playing this hand:");
-
-    
-        if (!in.hasNextLine()) {
-            System.out.println("No input available. Ending hand.");
-            return;
-        }
-
-        String input = in.readString(); 
-
-        if (input.equals(".")) {
-            break;
-        }
-
-        if (MyString.subsetOf(input, hand) && input.length() >= 2) {
-          
-            if (isWordInDictionary(input)) {
-                int wordPoints = wordScore(input); 
-                score += wordPoints; 
-                hand = MyString.remove(hand, input); 
-                System.out.println(input + " earned " + wordPoints + " points. Score: " + score + " points");
-            } else {
-                System.out.println("Invalid word. Try again."); 
-            }
-        } else {
-            System.out.println("Invalid word. Try again."); 
-        }
-        if (hand.length() <= 2) {
-            break;
-        }
-    }
-
-    System.out.println("End of hand. Total score: " + score + " points");
-}
-
+	public static void playHand(String hand) {
+		int score = 0;
+		In in = new In();
+	
+		while (hand.length() > 0) {
+			System.out.println("Current Hand: " + MyString.spacedString(hand));
+			System.out.println("Enter a word, or '.' to finish playing this hand:");
+	
+			if (!in.hasNextLine()) {
+				System.out.println("No input available. Ending hand.");
+				return;
+			}
+	
+			String input = in.readString();
+	
+			if (input.equals(".")) {
+				break;
+			}
+	
+			if (MyString.subsetOf(input, hand) && input.length() >= 2 && isWordInDictionary(input)) {
+				int wordPoints = wordScore(input);
+				score += wordPoints;
+				hand = MyString.remove(hand, input);
+				System.out.println(input + " earned " + wordPoints + " points. Score: " + score + " points");
+	
+				if (hand.length() <= 2) {
+					break;
+				}
+			} else {
+				System.out.println("Invalid word. Try again.");
+			}
+		}
+	
+		System.out.println("End of hand. Total score: " + score + " points");
+	}
+	
 
 
 	

@@ -134,6 +134,7 @@ public static void playHand(String hand) {
         System.out.println("Current Hand: " + MyString.spacedString(hand));
         System.out.println("Enter a word, or '.' to finish playing this hand:");
 
+        // בדיקה אם יש קלט זמין
         if (!in.hasNextLine()) {
             System.out.println("No input available. Ending hand.");
             break;
@@ -141,15 +142,18 @@ public static void playHand(String hand) {
 
         String input = in.readString();
 
+        // אם המשתמש הקליד '.'
         if (input.equals(".")) {
             break;
         }
 
+        // בדיקה אם המילה אינה חוקית
         while (!MyString.subsetOf(input, hand) || input.length() < 2) {
             System.out.println("Invalid word. Try again.");
             System.out.println("Current Hand: " + MyString.spacedString(hand));
             System.out.println("Enter a word, or '.' to finish playing this hand:");
 
+            // בדיקה אם יש קלט נוסף
             if (!in.hasNextLine()) {
                 System.out.println("No input available. Ending hand.");
                 return;
@@ -162,6 +166,7 @@ public static void playHand(String hand) {
             }
         }
 
+        // אם המילה חוקית ומופיעה במילון
         if (isWordInDictionary(input)) {
             score += wordScore(input);
             hand = MyString.remove(hand, input);
@@ -169,12 +174,36 @@ public static void playHand(String hand) {
         }
     }
 
+    // סיום היד
     if (hand.length() == 0) {
         System.out.println("Ran out of letters. Total score: " + score + " points");
     } else {
         System.out.println("End of hand. Total score: " + score + " points");
     }
 }
+
+	
+	// Plays a Scrabble game. Prompts the user to enter 'n' for playing a new hand, or 'e'
+	// to end the game. If the user enters any other input, writes an error message.
+	public static void playGame() {
+		init();
+		In in = new In();
+	
+		while (true) {
+			System.out.println("Enter n to deal a new hand, or e to end the game:");
+			String input = in.readString();
+	
+			if (input.equals("n")) {
+				String hand = createHand();
+				playHand(hand);
+			} else if (input.equals("e")) {
+				break;
+			} else {
+				System.out.println("Invalid input. Please enter 'n' or 'e'.");
+			}
+		}
+	}
+
 	public static void main(String[] args) {
 		//// Uncomment the test you want to run
 		////testBuildingTheDictionary();  

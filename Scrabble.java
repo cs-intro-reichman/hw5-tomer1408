@@ -122,62 +122,59 @@ public static int wordScore(String word) {
     // 1. The letters in the word are removed from the hand, which becomes smaller.
     // 2. The user gets the Scrabble points of the entered word.
     // 3. The user is prompted to enter another word, or '.' to end the hand. 
-	public static void playHand(String hand) {
-		int n = hand.length();
-		int score = 0;
-	
-		// Declares the variable in to refer to an object of type In, and initializes it to represent
-		// the stream of characters coming from the keyboard. Used for reading the user's inputs.
-		In in = new In();
-	
-		while (hand.length() > 0) {
-			System.out.println("Current Hand: " + MyString.spacedString(hand));
-			System.out.println("Enter a word, or '.' to finish playing this hand:");
-	
-			// Reads the next "token" from the keyboard. A token is defined as a string of 
-			// non-whitespace characters. Whitespace is either space characters, or  
-			// end-of-line characters.
-			String input = in.readString();
-			if (input.equals(".")) break;
+	// Runs a single hand in a Scrabble game. Each time the user enters a valid word:
+// 1. The letters in the word are removed from the hand, which becomes smaller.
+// 2. The user gets the Scrabble points of the entered word.
+// 3. The user is prompted to enter another word, or '.' to end the hand.
+public static void playHand(String hand) {
+    int score = 0;
+    In in = new In();
 
-			if (!MyString.subsetOf(input, hand) || input.length() < 2) {
-				System.out.println("Invalid word. Try again.");
-				if (input.equals(".")) break; 
-			}
-			if (isWordInDictionary(input)&&MyString.subsetOf(input, hand)) {
-				score += wordScore(input); 
-				hand = MyString.remove(hand, input); 
-			}
-		}
-	
-		if (hand.length() == 0) {
-			System.out.println("Ran out of letters. Total score: " + score + " points");
-		} else {
-			System.out.println("End of hand. Total score: " + score + " points");
-		}
-	}
-	
-	// Plays a Scrabble game. Prompts the user to enter 'n' for playing a new hand, or 'e'
-	// to end the game. If the user enters any other input, writes an error message.
-	public static void playGame() {
-		init();
-		In in = new In();
-	
-		while (true) {
-			System.out.println("Enter n to deal a new hand, or e to end the game:");
-			String input = in.readString();
-	
-			if (input.equals("n")) {
-				String hand = createHand();
-				playHand(hand);
-			} else if (input.equals("e")) {
-				break;
-			} else {
-				System.out.println("Invalid input. Please enter 'n' or 'e'.");
-			}
-		}
-	}
+    while (hand.length() > 0) {
+        System.out.println("Current Hand: " + MyString.spacedString(hand));
+        System.out.println("Enter a word, or '.' to finish playing this hand:");
 
+        if (!in.hasNextLine()) {
+            System.out.println("No input available. Ending hand.");
+            break;
+        }
+
+        String input = in.readString();
+
+        if (input.equals(".")) {
+            break;
+        }
+
+        while (!MyString.subsetOf(input, hand) || input.length() < 2) {
+            System.out.println("Invalid word. Try again.");
+            System.out.println("Current Hand: " + MyString.spacedString(hand));
+            System.out.println("Enter a word, or '.' to finish playing this hand:");
+
+            if (!in.hasNextLine()) {
+                System.out.println("No input available. Ending hand.");
+                return;
+            }
+
+            input = in.readString();
+
+            if (input.equals(".")) {
+                return;
+            }
+        }
+
+        if (isWordInDictionary(input)) {
+            score += wordScore(input);
+            hand = MyString.remove(hand, input);
+            System.out.println(input + " earned " + wordScore(input) + " points. Score: " + score + " points");
+        }
+    }
+
+    if (hand.length() == 0) {
+        System.out.println("Ran out of letters. Total score: " + score + " points");
+    } else {
+        System.out.println("End of hand. Total score: " + score + " points");
+    }
+}
 	public static void main(String[] args) {
 		//// Uncomment the test you want to run
 		////testBuildingTheDictionary();  

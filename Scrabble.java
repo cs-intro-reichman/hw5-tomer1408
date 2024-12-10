@@ -134,6 +134,7 @@ public static void playHand(String hand) {
         System.out.println("Current Hand: " + MyString.spacedString(hand));
         System.out.println("Enter a word, or '.' to finish playing this hand:");
 
+
         if (!in.hasNextLine()) {
             System.out.println("No input available. Ending hand.");
             return;
@@ -145,15 +146,21 @@ public static void playHand(String hand) {
             break;
         }
 
+    
         if (!MyString.subsetOf(input, hand) || input.length() < 2) {
             System.out.println("Invalid word. Try again.");
         } else if (isWordInDictionary(input)) {
+     
             int wordPoints = wordScore(input); 
-            score += wordPoints; 
+            score += wordPoints;
             hand = MyString.remove(hand, input); 
             System.out.println(input + " earned " + wordPoints + " points. Score: " + score + " points");
         } else {
             System.out.println("Invalid word. Try again.");
+        }
+
+        if (hand.length() == 0) {
+            break;
         }
     }
 
@@ -163,6 +170,7 @@ public static void playHand(String hand) {
         System.out.println("End of hand. Total score: " + score + " points");
     }
 }
+
 
 	
 	// Plays a Scrabble game. Prompts the user to enter 'n' for playing a new hand, or 'e'

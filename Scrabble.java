@@ -127,13 +127,12 @@ public static int wordScore(String word) {
 // 2. The user gets the Scrabble points of the entered word.
 // 3. The user is prompted to enter another word, or '.' to end the hand.
 public static void playHand(String hand) {
-    int score = 0; 
-    In in = new In(); 
+    int score = 0; // משתנה לניקוד
+    In in = new In(); // אובייקט לקריאת קלט
 
     while (hand.length() > 0) {
         System.out.println("Current Hand: " + MyString.spacedString(hand));
         System.out.println("Enter a word, or '.' to finish playing this hand:");
-
 
         if (!in.hasNextLine()) {
             System.out.println("No input available. Ending hand.");
@@ -146,20 +145,18 @@ public static void playHand(String hand) {
             break;
         }
 
-    
         if (!MyString.subsetOf(input, hand) || input.length() < 2) {
             System.out.println("Invalid word. Try again.");
         } else if (isWordInDictionary(input)) {
-     
             int wordPoints = wordScore(input); 
-            score += wordPoints;
+            score += wordPoints; 
             hand = MyString.remove(hand, input); 
             System.out.println(input + " earned " + wordPoints + " points. Score: " + score + " points");
         } else {
             System.out.println("Invalid word. Try again.");
         }
 
-        if (hand.length() == 0) {
+        if (hand.length() <= 2) {
             break;
         }
     }
@@ -170,6 +167,7 @@ public static void playHand(String hand) {
         System.out.println("End of hand. Total score: " + score + " points");
     }
 }
+
 
 
 	

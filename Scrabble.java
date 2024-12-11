@@ -148,7 +148,7 @@ public static int wordScore(String word) {
 					score += wordPoints;
 					hand = MyString.remove(hand, input);
 					System.out.println(input + " earned " + wordPoints + " points. Score: " + score + " points");
-			
+					System.out.println();
 				} else {
 					System.out.println("No such word in the dictionary. Try again.");
 				}
@@ -162,7 +162,7 @@ public static int wordScore(String word) {
 	        System.out.println("Ran out of letters. Total score: " + score + " points");
 		} else {
 			System.out.println("End of hand. Total score: " + score + " points");
-			System.out.println();
+			
 		}
 		
 	}

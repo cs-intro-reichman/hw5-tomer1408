@@ -142,39 +142,28 @@ public static int wordScore(String word) {
 				break;
 			}
 	
-			// Ignore leading/trailing spaces manually
-			while (input.startsWith(" ") || input.endsWith(" ")) {
-				if (input.startsWith(" ")) {
-					input = input.substring(1);
-				}
-				if (input.endsWith(" ")) {
-					input = input.substring(0, input.length() - 1);
-				}
-			}
-	
-			boolean validPlay = false;
+
+		
+
 			if (MyString.subsetOf(input, hand) && input.length() >= 2) {
 				if (isWordInDictionary(input)) {
 					int wordPoints = wordScore(input);
 					score += wordPoints;
 					hand = MyString.remove(hand, input);
 					System.out.println(input + " earned " + wordPoints + " points. Score: " + score + " points");
-					validPlay = true;
+			
 				} else {
 					System.out.println("No such word in the dictionary. Try again.");
 				}
 			} else {
-				if (!MyString.subsetOf(input, hand)) {
-					System.out.println("Word cannot be formed from current hand. Try again.");
-				} else if (input.length() < 2) {
-					System.out.println("Word is too short. Try again.");
-				}
+				System.out.println("Invalid word. Try again.");
 			}
 		}
 	
 		System.out.println("End of hand. Total score: " + score + " points");
 		System.out.println();
 	}
+	
 	
 	
 	// Plays a Scrabble game. Prompts the user to enter 'n' for playing a new hand, or 'e'

@@ -157,24 +157,6 @@ public static int wordScore(String word) {
 			if (!validPlay) {
 				System.out.println("Invalid word. Try again.");
 			}
-	
-			// Check if any valid words can be formed with the remaining hand
-			if (validPlay) {
-				boolean canFormWord = false;
-				for (int i = 0; i < NUM_OF_WORDS; i++) {
-					String dictWord = DICTIONARY[i];
-					if (dictWord.length() >= 2 && dictWord.length() <= hand.length() && 
-						MyString.subsetOf(dictWord, hand)) {
-						canFormWord = true;
-						break;
-					}
-				}
-	
-				if (!canFormWord) {
-					System.out.println("No more valid words can be formed.");
-					break;
-				}
-			}
 		}
 	
 		System.out.println("End of hand. Total score: " + score + " points");

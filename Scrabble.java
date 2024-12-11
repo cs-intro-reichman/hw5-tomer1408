@@ -131,13 +131,12 @@ public static int wordScore(String word) {
 		while (hand.length() > 0) {
 			System.out.println("Current Hand: " + MyString.spacedString(hand));
 			System.out.println("Enter a word, or '.' to finish playing this hand:");
-	
-			if (!in.hasNextLine()) {
-				System.out.println("No input available. Ending hand.");
-				return;
-			}
-	
 			String input = in.readString();
+	
+			if (input == null || input.isEmpty()) {
+				System.out.println("No input provided. Ending hand.");
+				break;
+			}
 	
 			if (input.equals(".")) {
 				break;

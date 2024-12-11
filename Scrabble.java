@@ -150,7 +150,7 @@ public static int wordScore(String word) {
 					System.out.println(input + " earned " + wordPoints + " points. Score: " + score + " points");
 			
 				} else {
-					System.out.println("Invalid word. Try again.");
+					System.out.println("No such word in the dictionary. Try again.");
 				}
 			} else {
 				System.out.println("Invalid word. Try again.");
@@ -162,9 +162,6 @@ public static int wordScore(String word) {
 			System.out.println("End of hand. Total score: " + score + " points");
 			System.out.println();
 		}
-
-	
-	
 		
 	}
 	

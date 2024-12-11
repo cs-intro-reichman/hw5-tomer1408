@@ -142,9 +142,6 @@ public static int wordScore(String word) {
 				break;
 			}
 	
-
-		
-
 			if (MyString.subsetOf(input, hand) && input.length() >= 2) {
 				if (isWordInDictionary(input)) {
 					int wordPoints = wordScore(input);
@@ -153,12 +150,18 @@ public static int wordScore(String word) {
 					System.out.println(input + " earned " + wordPoints + " points. Score: " + score + " points");
 			
 				} else {
-					System.out.println("No such word in the dictionary. Try again.");
+					System.out.println("Invalid word. Try again.");
 				}
 			} else {
 				System.out.println("Invalid word. Try again.");
 			}
 		}
+		if (hand.length() == 0) {
+	        System.out.println("Ran out of letters. Total score: " + score + " points");
+		} else {
+			System.out.println("End of hand. Total score: " + score + " points");
+		}
+
 	
 		System.out.println("End of hand. Total score: " + score + " points");
 		System.out.println();

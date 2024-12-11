@@ -143,24 +143,42 @@ public static int wordScore(String word) {
 				break;
 			}
 	
+			boolean validPlay = false;
 			if (MyString.subsetOf(input, hand) && input.length() >= 2) {
 				if (isWordInDictionary(input)) {
 					int wordPoints = wordScore(input);
 					score += wordPoints;
 					hand = MyString.remove(hand, input);
 					System.out.println(input + " earned " + wordPoints + " points. Score: " + score + " points");
-				} else {
-					System.out.println("Invalid word. Try again.");
+					validPlay = true;
 				}
-			} else {
+			}
+	
+			if (!validPlay) {
 				System.out.println("Invalid word. Try again.");
+			}
+	
+			// Check if any valid words can be formed with the remaining hand
+			if (validPlay) {
+				boolean canFormWord = false;
+				for (int i = 0; i < NUM_OF_WORDS; i++) {
+					String dictWord = DICTIONARY[i];
+					if (dictWord.length() >= 2 && dictWord.length() <= hand.length() && 
+						MyString.subsetOf(dictWord, hand)) {
+						canFormWord = true;
+						break;
+					}
+				}
+	
+				if (!canFormWord) {
+					System.out.println("No more valid words can be formed.");
+					break;
+				}
 			}
 		}
 	
 		System.out.println("End of hand. Total score: " + score + " points");
 	}
-	
-
 	
 	// Plays a Scrabble game. Prompts the user to enter 'n' for playing a new hand, or 'e'
 	// to end the game. If the user enters any other input, writes an error message.
